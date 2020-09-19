@@ -28,4 +28,4 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: dist/angular-ci-cd
+        FOLDER: dist/angular-signup-verification-boilerplate
