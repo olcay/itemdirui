@@ -1,13 +1,19 @@
-﻿<div class="app-container" [ngClass]="{ 'bg-light': account }">
-    <!-- main nav -->
-    <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="account">
-        <div class="navbar-nav">
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item nav-link">Home</a>
-            <a routerLink="/profile" routerLinkActive="active" class="nav-item nav-link">Profile</a>
-            <a *ngIf="account.role === Role.Admin" routerLink="/admin" routerLinkActive="active" class="nav-item nav-link">Admin</a>
-            <a (click)="logout()" class="nav-item nav-link">Logout</a>
-        </div>
+﻿<header>
+<!-- main nav -->
+    <nav *ngIf="account">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img alt="Logo" src="https://via.placeholder.com/200x70?text=Item.Dir" height="70"></a>
+        <ul>
+            <li><a *ngIf="account.role === Role.Admin" routerLink="/admin" routerLinkActive="active">Admin</a></li>
+            <li><a routerLink="/profile" routerLinkActive="active">Profile</a>
+                <ul>
+                    <li><a (click)="logout()">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
+</header>
+<main [ngClass]="{ 'bg-light': account }">
+    
 
     <!-- subnav router outlet -->
     <router-outlet name="subnav"></router-outlet>
@@ -17,4 +23,4 @@
 
     <!-- main router outlet -->
     <router-outlet></router-outlet>
-</div>
+</main>

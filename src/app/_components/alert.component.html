@@ -1,8 +1,8 @@
-﻿<div *ngIf="alerts.length" class="container">
-    <div class="m-3">
-        <div *ngFor="let alert of alerts" class="{{cssClasses(alert)}}">
-            <a class="close" (click)="removeAlert(alert)">&times;</a>
+﻿<article *ngIf="alerts.length">
+    <aside>
+        <p *ngFor="let alert of alerts">
+            <a (click)="removeAlert(alert)">&times;</a>
             <span [innerHTML]="alert.message"></span>
-        </div>
-    </div>
-</div>
+        </p>
+    </aside>
+</article>
