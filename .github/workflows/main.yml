@@ -26,11 +26,11 @@ jobs:
     - name: copy file
       uses: canastro/copy-file-action@master
       with:
-        source: "dist/angular-signup-verification-boilerplate/index.html"
-        target: "dist/angular-signup-verification-boilerplate/404.html"
+        source: "dist/itemdir-ui/index.html"
+        target: "dist/itemdir-ui/404.html"
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: dist/angular-signup-verification-boilerplate
+        FOLDER: dist/itemdir-ui
