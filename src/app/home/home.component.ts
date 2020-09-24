@@ -6,7 +6,7 @@ import { AccountService, ItemService } from '@app/_services';
 export class HomeComponent {
     account = this.accountService.accountValue;
 
-    private data: any = []
+    data: any = []
 
     constructor(private accountService: AccountService, private itemService: ItemService) {
     }
