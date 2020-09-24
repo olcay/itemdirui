@@ -1,6 +1,13 @@
 ﻿<div class="p-4">
     <div class="container">
         <h1>Hi {{account.firstName}}!</h1>
-        <p>You're logged in with Angular 10 & JWT!!</p>
+        <p>Your items:</p>
     </div>
+</div>
+
+<div *ngFor="let item of data" style="text-align:center">
+    <h3>
+        {{ item.title }}
+    </h3>
+    {{ item.description }}
 </div>
