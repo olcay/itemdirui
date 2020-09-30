@@ -4,6 +4,7 @@
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img alt="Logo" src="https://via.placeholder.com/200x70?text=Item.Dir" height="70"></a>
         <ul>
             <li><a *ngIf="account.role === Role.Admin" routerLink="/admin" routerLinkActive="active">Admin</a></li>
+            <li><a routerLink="/item" routerLinkActive="active">+</a></li>
             <li><a routerLink="/profile" routerLinkActive="active">Profile</a>
                 <ul>
                     <li><a (click)="logout()">Logout</a></li>

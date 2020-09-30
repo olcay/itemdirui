@@ -7,7 +7,7 @@
 
 <div *ngFor="let item of data" style="text-align:center">
     <h3>
-        {{ item.title }}
+        <a routerLink="/item/{{ item.id }}">{{ item.title }}</a>
     </h3>
     {{ item.description }}
 </div>

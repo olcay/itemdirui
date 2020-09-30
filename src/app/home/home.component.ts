@@ -1,22 +1,22 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { AccountService, ItemService } from '@app/_services';
+import { AccountService } from '@app/_services';
+import { ItemDirApiClient } from '@app/_services/itemdirapi.client';
 
 @Component({ templateUrl: 'home.component.html' })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     account = this.accountService.accountValue;
 
     data: any = []
 
-    constructor(private accountService: AccountService, private itemService: ItemService) {
-    }
+    constructor(private accountService: AccountService, private client: ItemDirApiClient) { }
 
     getData() {
-        this.itemService.getClient().getItems(undefined, undefined, undefined, undefined, undefined)
-            .then((res) => {
+        this.client.getItems(undefined, undefined, undefined, undefined, undefined, undefined)
+            .subscribe(res => {
                 console.log(res)
                 this.data = res.value;
-            });
+            }, error => console.error(error));
     }
 
     ngOnInit() {
