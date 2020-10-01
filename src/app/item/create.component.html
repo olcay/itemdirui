@@ -1,0 +1,32 @@
+﻿<section>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <header>
+            <h2>Add a new item</h2>
+        </header>
+        <label>Title:</label>
+        <input type="text" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" size="20">
+        <div *ngIf="submitted && f.title.errors">
+            <div *ngIf="f.title.errors.required">Title is required</div>
+        </div>
+
+        <label>Item type:</label>
+        <select formControlName="itemType" [ngClass]="{ 'is-invalid': submitted && f.itemType.errors }">
+            <option value="Game">Game</option>
+            <option value="Generic">Generic</option>
+            <option value="Movie">Movie</option>
+            <option value="Book">Book</option>
+        </select>
+
+        <label>Description:</label>
+        <textarea cols="40" rows="5" formControlName="description"
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+        <div *ngIf="submitted && f.title.errors">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+        </div>
+
+        <button type="submit" [disabled]="loading">
+            Save<span *ngIf="loading">...</span>
+        </button>
+        <a routerLink="/" href="">Cancel</a>
+    </form>
+</section>

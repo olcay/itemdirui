@@ -14,25 +14,12 @@ export class DetailsComponent implements OnInit {
 
     getData() {
         let itemid = this.activatedRoute.snapshot.params.itemid;
-    
-
+        
         this.client.getItem(itemid, undefined, 'application/json')
             .subscribe(res => {
                 console.log(res)
                 this.data = res;
             }, error => console.error(error));
-
-        /* var item = new ItemForCreationDto();
-        item.title = 'Mario64';
-        item.description = 'Remaster';
-        item.itemType = ItemType.Game;
-
-        var tag = new TagForCreationDto();
-        tag.name = 'geh'
-        item.tags = [tag];
-        this.client.createItem(item).subscribe(res => {
-            console.log(res)
-        }, error => console.error(error)); */
     }
 
     ngOnInit() {

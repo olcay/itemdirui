@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ItemRoutingModule } from './item-routing.module';
 import { LayoutComponent } from './layout.component';
 import { DetailsComponent } from './details.component';
-import { UpdateComponent } from './update.component';
+import { CreateComponent } from './create.component';
 
 @NgModule({
     imports: [
@@ -16,7 +16,7 @@ import { UpdateComponent } from './update.component';
     declarations: [
         LayoutComponent,
         DetailsComponent,
-        UpdateComponent
+        CreateComponent
     ]
 })
 export class ItemModule { }

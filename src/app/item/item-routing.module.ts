@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
 import { DetailsComponent } from './details.component';
-import { UpdateComponent } from './update.component';
+import { CreateComponent } from './create.component';
 
 const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
-            { path: ':itemid', component: DetailsComponent },
-            { path: 'update', component: UpdateComponent }
+            { path: 'create', component: CreateComponent },
+            { path: ':itemid', component: DetailsComponent }            
         ]
     }
 ];
