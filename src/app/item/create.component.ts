@@ -1,34 +1,49 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AccountService, AlertService } from '@app/_services';
-import { MustMatch } from '@app/_helpers';
-import { ItemDirApiClient, ItemForCreationDto } from '@app/_services/itemdirapi.client';
-
+import { ItemDirApiClient, ItemForCreationDto, TagForCreationDto } from '@app/_services/itemdirapi.client';
+export interface Tag {
+    value: string;
+    name: string;
+}
 @Component({ templateUrl: 'create.component.html' })
 export class CreateComponent implements OnInit {
     account = this.accountService.accountValue;
     form: FormGroup;
     loading = false;
     submitted = false;
-    deleting = false;
+    tagsData: Tag[] = [
+        { value: 'isPlayed', name: 'Is Played?' },
+        { value: 'isFinished', name: 'Is Finished?' }
+    ];
 
     constructor(
         private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
-        private alertService: AlertService, 
+        private alertService: AlertService,
         private client: ItemDirApiClient
     ) { }
+
+    onChange(name: string, isChecked: boolean) {
+        const tags = (this.form.controls.tags as FormArray);
+
+        if (isChecked) {
+            tags.push(new FormControl(name));
+        } else {
+            const index = tags.controls.findIndex(x => x.value === name);
+            tags.removeAt(index);
+        }
+    }
 
     ngOnInit() {
         this.form = this.formBuilder.group({
             title: ['', Validators.required],
-            description: ['', Validators.required],
-            itemType: ['', Validators.required]
+            description: [''],
+            itemType: ['Game', Validators.required],
+            tags: this.formBuilder.array([])
         });
     }
 
@@ -48,23 +63,22 @@ export class CreateComponent implements OnInit {
 
         this.loading = true;
 
-
         var item = new ItemForCreationDto();
         item.title = this.f.title.value;
-        item.description = this.form.get('description').value;
+        item.description = this.f.description.value;
         item.itemType = this.f.itemType.value;
+        item.tags = new Array();
 
-        console.log(item)
+        this.f.tags.value.forEach(element => {
+            var tag = new TagForCreationDto();
+            tag.name = element
+            item.tags.push(tag);
+        });  
 
-        /* var tag = new TagForCreationDto();
-        tag.name = 'geh'
-        item.tags = [tag]; */
         this.client.createItem(item).subscribe(res => {
-            console.log(res)
             this.alertService.success('New item is created!', { keepAfterRouteChange: true });
             this.router.navigate(['/']);
         }, error => {
-            console.log(error)
             this.alertService.error(error);
             this.loading = false;
         });

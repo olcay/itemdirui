@@ -17,12 +17,14 @@
             <option value="Book">Book</option>
         </select>
 
+        <div *ngFor="let tag of tagsData">
+            <input type="checkbox" (change)="onChange(tag.value, $event.target.checked)" />
+            {{ tag.name }}
+        </div>
+
         <label>Description:</label>
         <textarea cols="40" rows="5" formControlName="description"
             [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
-        <div *ngIf="submitted && f.title.errors">
-            <div *ngIf="f.description.errors.required">Description is required</div>
-        </div>
 
         <button type="submit" [disabled]="loading">
             Save<span *ngIf="loading">...</span>

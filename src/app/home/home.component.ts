@@ -12,9 +12,8 @@ export class HomeComponent implements OnInit {
     constructor(private accountService: AccountService, private client: ItemDirApiClient) { }
 
     getData() {
-        this.client.getItems(undefined, undefined, undefined, undefined, undefined, undefined)
+        this.client.getItems(undefined, undefined, 1, 10, undefined, undefined)
             .subscribe(res => {
-                console.log(res)
                 this.data = res.value;
             }, error => console.error(error));
     }

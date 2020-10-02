@@ -1532,7 +1532,7 @@ export class ItemDirApiClient implements IItemDirApiClient {
             responseType: "blob",
             withCredentials: true,
             headers: new HttpHeaders({
-                "Accept": "text/plain"
+                "Accept": "application/json"
             })
         };
 
@@ -1596,7 +1596,7 @@ export class ItemDirApiClient implements IItemDirApiClient {
             withCredentials: true,
             headers: new HttpHeaders({
                 "Content-Type": "application/json-patch+json",
-                "Accept": "text/plain"
+                "Accept": "application/json"
             })
         };
 

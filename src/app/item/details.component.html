@@ -5,4 +5,10 @@
         <p>{{ data.creationDate | date }}</p>
         <p>{{ data.description }}</p>
     </header>
+    <p>{{ tags.toString() }}</p>
+
+    
+    <button type="button" (click)="onDelete()" [disabled]="deleting">
+        Delete<span *ngIf="deleting">...</span>
+    </button>
 </section>

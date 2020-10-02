@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href=https://item.directory"
+    "deploy": "ng build --prod --base-href=https://item.directory",
+    "update": "cd src/app/_services/& nswag.cmd run /runtime:NetCore31"
   },
   "private": true,
   "dependencies": {
